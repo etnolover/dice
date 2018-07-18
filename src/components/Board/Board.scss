@@ -1,0 +1,57 @@
+.container {
+  max-width: 100%;
+}
+
+.box:last-child {
+  margin-bottom: 1.5rem;
+}
+
+.game-hash__value {
+  font-weight: bold;
+  word-wrap: break-word;
+}
+
+.bet-type__details {
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.bet-type__btn {
+  font-weight: bold;
+}
+
+.board-balance__add-credits {
+  margin-top: 8px;
+}
+
+.board-bot__btn {
+  margin-top: 8px;
+
+  &.board-bot__btn_run {
+    font-weight: bold;
+  }
+}
+
+.balance__amount-number {
+  font-weight: bold;
+}
+
+.game-result__details-number {
+  margin-right: 8px;
+}
+
+.bet-history-box {
+  margin-left: -0.75rem;
+  margin-right: -0.75rem;
+}
+
+.bet-history-table {
+  overflow: auto;
+}
+
+.history-table__caption {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  text-align: left;
+}
