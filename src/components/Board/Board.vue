@@ -194,19 +194,12 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>50</td>
-              <td>64 Win!</td>
-              <td>a5cad04ed170e1d176a5ec3e26077b434184d0d149f33606db4e7366514d0486</td>
-              <td>100</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>50</td>
-              <td>64 Win!</td>
-              <td>a5cad04ed170e1d176a5ec3e26077b434184d0d149f33606db4e7366514d0486</td>
-              <td>150</td>
+            <tr v-for="(game, index) in betHistory" :key="index">
+              <td v-text="index + 1"></td>
+              <td v-text="game.amount"></td>
+              <td v-text="game.result"></td>
+              <td v-text="game.hash"></td>
+              <td v-text="game.runningTotal"></td>
             </tr>
           </tbody>
         </div>

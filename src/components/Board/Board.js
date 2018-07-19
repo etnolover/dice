@@ -38,6 +38,7 @@ export default {
       this.subtractBetAmountFromBalance();
       this.setBetResult();
       this.updateBalance();
+      this.addGameDetailsToHistory();
       this.randomNumber = this.getRandomNumber();
       this.gameProceed = false;
     },
@@ -72,7 +73,9 @@ export default {
     },
 
     runAutoBet() {
+      this.clearBetHistory();
       this.autoBetInProcess = true;
+
       let numberOfBetsLeft = this.numberOfBets;
 
       while (numberOfBetsLeft > 0) {
@@ -89,6 +92,19 @@ export default {
 
     historyToggle() {
       this.isHistoryOpened = !this.isHistoryOpened;
+    },
+
+    addGameDetailsToHistory() {
+      this.betHistory.push({
+        amount: this.betAmount,
+        result: this.betResultText,
+        hash: this.hashedRandomNumber,
+        runningTotal: this.balanceAmount,
+      });
+    },
+
+    clearBetHistory() {
+      this.betHistory = [];
     },
   },
 
