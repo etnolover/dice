@@ -19,6 +19,8 @@ export default {
     betHistory: [],
     autoBet: false,
     isHistoryOpened: false,
+    numberOfBets: null,
+    autoBetType: 'hi',
   }),
 
   methods: {

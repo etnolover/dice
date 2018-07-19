@@ -55,3 +55,20 @@
   margin-bottom: 8px;
   text-align: left;
 }
+
+.auto-bet__type-container {
+  margin-bottom: 8px;
+}
+
+.auto-bet__type-label {
+  cursor: pointer;
+  display: block;
+
+  &:first-child {
+    margin-bottom: 2px;
+  }
+}
+
+.auto-bet__type-input {
+  cursor: pointer;
+}

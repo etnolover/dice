@@ -131,8 +131,35 @@
           <div class="box">
             <h4 class="title is-5 has-text-centered card-title">Betting Bot</h4>
             <label class="label" for="bets_number">Number of bets:
-              <input class="input is-info" type="number" id="bets_number">
+              <input
+                class="input is-info"
+                type="number"
+                id="bets_number"
+                min="1"
+                v-model="numberOfBets">
             </label>
+            <div class="auto-bet__type-container">
+              <label class="auto-bet__type-label" for="auto_bet_hi">
+                <input
+                  class="auto-bet__type-input"
+                  name="auto-bet-type"
+                  type="radio"
+                  id="auto_bet_hi"
+                  value="hi"
+                  v-model="autoBetType">
+                Auto bet Hi
+              </label>
+              <label class="auto-bet__type-label" for="auto_bet_lo">
+                <input
+                  class="auto-bet__type-input"
+                  name="auto-bet-type"
+                  type="radio"
+                  id="auto_bet_lo"
+                  value="lo"
+                  v-model="autoBetType">
+                Auto bet Lo
+              </label>
+            </div>
             <label class="checkbox" for="martingale">
               <input type="checkbox" id="martingale">
               Martingale strategy
