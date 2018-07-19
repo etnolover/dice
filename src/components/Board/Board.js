@@ -16,6 +16,8 @@ export default {
     randomNumber: null,
     gameProceed: false,
     playerWon: null,
+    betHistory: [],
+    autoBet: false,
   }),
 
   methods: {
@@ -65,6 +67,10 @@ export default {
     updateBalanceWithFreeCredits() {
       this.balanceAmount = INITITAL_BALANCE_AMOUNT;
     },
+
+    autoBetToggle() {
+      this.autoBet = !this.autoBet;
+    },
   },
 
   computed: {
@@ -102,6 +108,10 @@ export default {
 
     isBetButtonsDisabled() {
       return this.gameProceed || !this.betAmount || !this.betNumber;
+    },
+
+    autoBetText() {
+      return this.autoBet ? 'Stop Auto Bet' : 'Auto Bet';
     },
   },
 

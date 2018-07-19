@@ -138,8 +138,11 @@
               Martingale strategy
             </label>
             <button
-              class="board-bot__btn board-bot__btn_run button is-info is-fullwidth">
-              Auto Bet
+              class="board-bot__btn board-bot__btn_run button is-info is-fullwidth"
+              :class="{'is-danger': autoBet}"
+              v-text="autoBetText"
+              @click="autoBetToggle"
+              :disabled="gameProceed">
             </button>
             <button
               class="board-bot__btn board-bot__btn_history button is-info is-fullwidth is-inverted">
