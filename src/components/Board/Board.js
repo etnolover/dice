@@ -3,6 +3,7 @@ import { sha256 } from 'js-sha256';
 const INITITAL_BALANCE_AMOUNT = 100;
 const BET_NUMBER_MIN = 1;
 const BET_NUMBER_MAX = 100;
+const CHANCE_VALUE_MAX = 100;
 
 export default {
   name: 'Board',
@@ -59,7 +60,7 @@ export default {
 
   computed: {
     chanceValueHi() {
-      return 100 - this.betNumber;
+      return CHANCE_VALUE_MAX - this.betNumber;
     },
 
     chanceValueLo() {
@@ -67,11 +68,11 @@ export default {
     },
 
     payoutRatioHi() {
-      return this.getRoundedNumber(100 / this.chanceValueHi);
+      return this.getRoundedNumber(CHANCE_VALUE_MAX / this.chanceValueHi);
     },
 
     payoutRatioLo() {
-      return this.getRoundedNumber(100 / this.chanceValueLo);
+      return this.getRoundedNumber(CHANCE_VALUE_MAX / this.chanceValueLo);
     },
 
     winningPayoutRatio() {
