@@ -4,6 +4,8 @@ const INITITAL_BALANCE_AMOUNT = 100;
 const BET_NUMBER_MIN = 1;
 const BET_NUMBER_MAX = 100;
 const CHANCE_VALUE_MAX = 100;
+const CHANCE_VALUE_MIN = 0;
+const PAYOUT_RATIO_MAX = 100;
 
 export default {
   name: 'Board',
@@ -116,19 +118,22 @@ export default {
 
   computed: {
     chanceValueHi() {
-      return CHANCE_VALUE_MAX - this.betNumber;
+      const actualChance = CHANCE_VALUE_MAX - this.betNumber;
+      return (actualChance < CHANCE_VALUE_MIN) ? CHANCE_VALUE_MIN : actualChance;
     },
 
     chanceValueLo() {
-      return this.betNumber;
+      return (this.betNumber > CHANCE_VALUE_MAX) ? CHANCE_VALUE_MAX : this.betNumber;
     },
 
     payoutRatioHi() {
-      return this.getRoundedNumber(CHANCE_VALUE_MAX / this.chanceValueHi);
+      const actualRatio = this.getRoundedNumber(CHANCE_VALUE_MAX / this.chanceValueHi);
+      return (actualRatio > PAYOUT_RATIO_MAX) ? PAYOUT_RATIO_MAX : actualRatio;
     },
 
     payoutRatioLo() {
-      return this.getRoundedNumber(CHANCE_VALUE_MAX / this.chanceValueLo);
+      const actualRatio = this.getRoundedNumber(CHANCE_VALUE_MAX / this.chanceValueLo);
+      return (actualRatio > PAYOUT_RATIO_MAX) ? PAYOUT_RATIO_MAX : actualRatio;
     },
 
     winningPayoutRatio() {
