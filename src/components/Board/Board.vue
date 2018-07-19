@@ -8,44 +8,86 @@
         <div class="column box is-two-thirds">
           <div class="columns">
             <label class="column label" for="bet_amount">Bet amount:
-              <input class="input is-primary" type="number" id="bet_amount">
+              <input
+                v-model.number="betAmount"
+                class="input is-primary"
+                type="number"
+                :max="balanceAmount"
+                id="bet_amount"
+                :placeholder="betAmountPlaceholder">
             </label>
             <label class="column label" for="bet_number">Number:
-              <input class="input is-primary" type="number" id="bet_number">
+              <input
+                v-model.number="betNumber"
+                class="input is-primary"
+                type="number"
+                min="1"
+                max="100"
+                id="bet_number"
+                placeholder="Input number from 1 to 100">
             </label>
           </div>
           <div class="columns">
             <div class="column bet-type">
-              <button class="button is-primary is-fullwidth bet-type__btn">Bet Hi</button>
-              <div class="bet-type__details has-text-centered">
+              <button
+                class="button is-primary is-fullwidth bet-type__btn"
+                :disabled="isBetButtonsDisabled">
+                Bet Hi
+              </button>
+              <div
+                v-show="betNumber"
+                class="bet-type__details has-text-centered">
                 <div class="bet-details__number">
                   number &#8805;
-                  <span class="bet-details__number-value">25</span>
+                  <span
+                    class="bet-details__number-value"
+                    v-text="betNumber">
+                  </span>
                 </div>
                 <div class="bet-details__chance">
                   chance:
-                  <span class="bet-details__chance-value">75</span>%
+                  <span
+                    class="bet-details__chance-value"
+                    v-text="chanceValueHi">
+                  </span>%
                 </div>
                 <div class="bet-details__payout">
                   payout:
-                  <span class="bet-details__payout-value">1.33</span>x
+                  <span
+                    class="bet-details__payout-value"
+                    v-text="payoutRatioHi">
+                  </span>x
                 </div>
               </div>
             </div>
             <div class="column bet-type">
-              <button class="button is-primary is-fullwidth bet-type__btn">Bet Lo</button>
-              <div class="bet-type__details has-text-centered">
+              <button
+                class="button is-primary is-fullwidth bet-type__btn"
+                :disabled="isBetButtonsDisabled">
+                Bet Lo
+              </button>
+              <div
+                v-show="betNumber"
+                class="bet-type__details has-text-centered">
                 <div class="bet-details__number">
                   number &#8804;
-                  <span class="bet-details__number-value">25</span>
+                  <span
+                    class="bet-details__number-value"
+                    v-text="betNumber">
+                  </span>
                 </div>
                 <div class="bet-details__chance">
                   chance:
-                  <span class="bet-details__chance-value">25</span>%
+                  <span
+                    class="bet-details__chance-value"
+                    v-text="chanceValueLo"></span>%
                 </div>
                 <div class="bet-details__payout">
                   payout:
-                  <span class="bet-details__payout-value">4</span>x
+                  <span
+                    class="bet-details__payout-value"
+                    v-text="payoutRatioLo">
+                  </span>x
                 </div>
               </div>
             </div>
@@ -59,8 +101,9 @@
           </div>
           <div class="board__game-hash box has-text-centered">
             <p class="game-hash__title">Provable Fair Hash:</p>
-            <div class="game-hash__value">
-              a5cad04ed170e1d176a5ec3e26077b434184d0d149f33606db4e7366514d0486
+            <div
+              class="game-hash__value"
+              v-text="hashedRandomNumber">
             </div>
           </div>
         </div>
@@ -68,10 +111,15 @@
           <div class="board__balance box">
             <p class="balance__amount">
               Balance:
-              <span class="balance__amount-number">100</span>
+              <span
+                class="balance__amount-number"
+                v-text="balanceAmount">
+              </span>
               credits
             </p>
-            <button class="board-balance__add-credits button is-warning is-fullwidth">
+            <button
+              class="board-balance__add-credits button is-warning is-fullwidth"
+              :disabled="!!balanceAmount">
               Free credits
             </button>
           </div>
