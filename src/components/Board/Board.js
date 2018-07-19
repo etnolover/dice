@@ -30,6 +30,7 @@ export default {
     runGame(type) {
       this.gameProceed = true;
       this.betType = type;
+      this.subtractBetAmountFromBalance();
       this.setBetResult();
       this.updateBalance();
       this.randomNumber = this.getRandomNumber();
@@ -49,11 +50,13 @@ export default {
       }
     },
 
+    subtractBetAmountFromBalance() {
+      this.balanceAmount -= this.betAmount;
+    },
+
     updateBalance() {
       if (this.playerWon) {
         this.balanceAmount += (this.betAmount * this.winningPayoutRatio);
-      } else {
-        this.balanceAmount -= this.betAmount;
       }
 
       localStorage.setItem('balanceAmount', this.balanceAmount);
