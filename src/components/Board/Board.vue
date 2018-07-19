@@ -145,13 +145,16 @@
               :disabled="gameProceed">
             </button>
             <button
-              class="board-bot__btn board-bot__btn_history button is-info is-fullwidth is-inverted">
-              Show history
+              class="board-bot__btn board-bot__btn_history button is-info is-fullwidth is-inverted"
+              v-text="historyBtnText"
+              @click="historyToggle">
             </button>
           </div>
         </div>
       </div>
-      <div class="box bet-history-box">
+      <div
+        v-show="isHistoryOpened"
+        class="box bet-history-box">
         <div class="table is-bordered is-striped is-fullwidth bet-history-table">
           <caption class="history-table__caption">Bet History</caption>
           <thead>

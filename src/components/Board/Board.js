@@ -18,6 +18,7 @@ export default {
     playerWon: null,
     betHistory: [],
     autoBet: false,
+    isHistoryOpened: false,
   }),
 
   methods: {
@@ -71,6 +72,10 @@ export default {
     autoBetToggle() {
       this.autoBet = !this.autoBet;
     },
+
+    historyToggle() {
+      this.isHistoryOpened = !this.isHistoryOpened;
+    },
   },
 
   computed: {
@@ -112,6 +117,10 @@ export default {
 
     autoBetText() {
       return this.autoBet ? 'Stop Auto Bet' : 'Auto Bet';
+    },
+
+    historyBtnText() {
+      return this.isHistoryOpened ? 'Hide history' : 'Show history';
     },
   },
 
