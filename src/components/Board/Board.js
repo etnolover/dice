@@ -21,6 +21,7 @@ export default {
     numberOfBets: null,
     autoBetType: 'hi',
     autoBetInProcess: false,
+    isMartingale: false,
   }),
 
   methods: {
@@ -84,6 +85,11 @@ export default {
         }
 
         this.runGame(this.autoBetType);
+
+        if (this.isMartingale && !this.playerWon) {
+          this.betAmount *= 2;
+        }
+
         numberOfBetsLeft -= 1;
       }
 

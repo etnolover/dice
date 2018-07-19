@@ -161,7 +161,10 @@
               </label>
             </div>
             <label class="checkbox" for="martingale">
-              <input type="checkbox" id="martingale">
+              <input
+                v-model="isMartingale"
+                type="checkbox"
+                id="martingale">
               Martingale strategy
             </label>
             <button
