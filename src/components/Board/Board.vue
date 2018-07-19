@@ -169,7 +169,7 @@
               :class="{'is-danger': autoBet}"
               v-text="autoBetText"
               @click="autoBetToggle"
-              :disabled="gameProceed">
+              :disabled="isAutoBetBtnDisabled">
             </button>
             <button
               class="board-bot__btn board-bot__btn_history button is-info is-fullwidth is-inverted"

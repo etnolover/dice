@@ -21,6 +21,7 @@ export default {
     isHistoryOpened: false,
     numberOfBets: null,
     autoBetType: 'hi',
+    autoBetInProcess: false,
   }),
 
   methods: {
@@ -119,6 +120,10 @@ export default {
 
     autoBetText() {
       return this.autoBet ? 'Stop Auto Bet' : 'Auto Bet';
+    },
+
+    isAutoBetBtnDisabled() {
+      return this.isBetButtonsDisabled || !this.numberOfBets || this.autoBetInProcess;
     },
 
     historyBtnText() {
