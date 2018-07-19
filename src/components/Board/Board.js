@@ -55,6 +55,8 @@ export default {
       } else {
         this.balanceAmount -= this.betAmount;
       }
+
+      localStorage.setItem('balanceAmount', this.balanceAmount);
     },
 
     updateBalanceWithFreeCredits() {
@@ -102,5 +104,9 @@ export default {
 
   created() {
     this.randomNumber = this.getRandomNumber();
+
+    if ('balanceAmount' in localStorage) {
+      this.balanceAmount = +localStorage.getItem('balanceAmount');
+    }
   },
 };
