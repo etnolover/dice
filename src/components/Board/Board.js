@@ -24,6 +24,10 @@ export default {
     autoBetType: 'hi',
     autoBetInProcess: false,
     isMartingale: false,
+    errors: {
+      betAmount: false,
+      betNumber: false,
+    },
   }),
 
   methods: {
@@ -114,6 +118,30 @@ export default {
     clearBetHistory() {
       this.betHistory = [];
     },
+
+    validateBetAmount() {
+      if (this.betAmount < 1 || this.betAmount > this.balanceAmount) {
+        this.showError('betAmount');
+      } else {
+        this.hideError('betAmount');
+      }
+    },
+
+    validateBetNumber() {
+      if (this.betNumber < 1 || this.betNumber > 100) {
+        this.showError('betNumber');
+      } else {
+        this.hideError('betNumber');
+      }
+    },
+
+    showError(field) {
+      this.errors[field] = true;
+    },
+
+    hideError(field) {
+      this.errors[field] = false;
+    },
   },
 
   computed: {
@@ -153,7 +181,7 @@ export default {
     },
 
     isBetButtonsDisabled() {
-      return this.gameProceed || !this.betAmount || !this.betNumber;
+      return this.gameProceed || !this.betAmount || !this.betNumber || !this.isDataValid;
     },
 
     isBalanceInsufficient() {
@@ -170,6 +198,28 @@ export default {
 
     historyBtnText() {
       return this.isHistoryOpened ? 'Hide history' : 'Show history';
+    },
+
+    betAmountError() {
+      return `Please, input number from 1 to ${this.balanceAmount}`;
+    },
+
+    betNumberError() {
+      return 'Please, input number from 1 to 100';
+    },
+
+    isDataValid() {
+      return !Object.keys(this.errors).some(key => this.errors[key] === true);
+    },
+  },
+
+  watch: {
+    betAmount() {
+      this.validateBetAmount();
+    },
+
+    betNumber() {
+      this.validateBetNumber();
     },
   },
 

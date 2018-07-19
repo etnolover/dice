@@ -14,7 +14,13 @@
                 type="number"
                 :max="balanceAmount"
                 id="bet_amount"
-                :placeholder="betAmountPlaceholder">
+                :placeholder="betAmountPlaceholder"
+                @change="validateBetAmount">
+                <span
+                  v-if="errors.betAmount"
+                  class="help is-danger"
+                  v-text="betAmountError">
+                </span>
             </label>
             <label class="column label" for="bet_number">Number:
               <input
@@ -25,6 +31,11 @@
                 max="100"
                 id="bet_number"
                 placeholder="Input number from 1 to 100">
+                <span
+                  v-if="errors.betNumber"
+                  class="help is-danger"
+                  v-text="betNumberError">
+                </span>
             </label>
           </div>
           <div class="columns">
