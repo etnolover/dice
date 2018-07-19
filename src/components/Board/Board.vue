@@ -166,9 +166,9 @@
             </label>
             <button
               class="board-bot__btn board-bot__btn_run button is-info is-fullwidth"
-              :class="{'is-danger': autoBet}"
+              :class="{'is-danger': autoBetInProcess}"
               v-text="autoBetText"
-              @click="autoBetToggle"
+              @click="runAutoBet"
               :disabled="isAutoBetBtnDisabled">
             </button>
             <button

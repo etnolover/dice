@@ -17,7 +17,6 @@ export default {
     gameProceed: false,
     playerWon: null,
     betHistory: [],
-    autoBet: false,
     isHistoryOpened: false,
     numberOfBets: null,
     autoBetType: 'hi',
@@ -72,8 +71,20 @@ export default {
       this.balanceAmount = INITITAL_BALANCE_AMOUNT;
     },
 
-    autoBetToggle() {
-      this.autoBet = !this.autoBet;
+    runAutoBet() {
+      this.autoBetInProcess = true;
+      let numberOfBetsLeft = this.numberOfBets;
+
+      while (numberOfBetsLeft > 0) {
+        if (this.isBalanceInsufficient) {
+          break;
+        }
+
+        this.runGame(this.autoBetType);
+        numberOfBetsLeft -= 1;
+      }
+
+      this.autoBetInProcess = false;
     },
 
     historyToggle() {
@@ -118,8 +129,12 @@ export default {
       return this.gameProceed || !this.betAmount || !this.betNumber;
     },
 
+    isBalanceInsufficient() {
+      return this.balanceAmount < this.betAmount;
+    },
+
     autoBetText() {
-      return this.autoBet ? 'Stop Auto Bet' : 'Auto Bet';
+      return this.autoBetInProcess ? 'Bet in process' : 'Auto Bet';
     },
 
     isAutoBetBtnDisabled() {
