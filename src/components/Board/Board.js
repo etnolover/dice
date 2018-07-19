@@ -13,6 +13,8 @@ export default {
     betResultText: null,
     balanceAmount: INITITAL_BALANCE_AMOUNT,
     randomNumber: null,
+    gameProceed: false,
+    playerWon: null,
   }),
 
   methods: {
@@ -22,6 +24,36 @@ export default {
 
     getRandomNumber() {
       return Math.floor(BET_NUMBER_MIN + (Math.random() * BET_NUMBER_MAX));
+    },
+
+    runGame(type) {
+      this.gameProceed = true;
+      this.betType = type;
+      this.setBetResult();
+      this.updateBalance();
+      this.randomNumber = this.getRandomNumber();
+      this.gameProceed = false;
+    },
+
+    setBetResult() {
+      if (
+        (this.betType === 'hi' && this.randomNumber >= this.betNumber)
+        || (this.betType === 'lo' && this.randomNumber <= this.betNumber)
+      ) {
+        this.betResultText = `${this.randomNumber} WIN`;
+        this.playerWon = true;
+      } else {
+        this.betResultText = `${this.randomNumber} LOSE`;
+        this.playerWon = false;
+      }
+    },
+
+    updateBalance() {
+      if (this.playerWon) {
+        this.balanceAmount += (this.betAmount * this.winningPayoutRatio);
+      } else {
+        this.balanceAmount -= this.betAmount;
+      }
     },
   },
 
@@ -42,6 +74,10 @@ export default {
       return this.getRoundedNumber(100 / this.chanceValueLo);
     },
 
+    winningPayoutRatio() {
+      return this.betType === 'hi' ? this.payoutRatioHi : this.payoutRatioLo;
+    },
+
     betAmountPlaceholder() {
       if (this.balanceAmount > 0) {
         return `Input number from 1 to ${this.balanceAmount}`;
@@ -55,7 +91,7 @@ export default {
     },
 
     isBetButtonsDisabled() {
-      return !this.betAmount || !this.betNumber;
+      return this.gameProceed || !this.betAmount || !this.betNumber;
     },
   },
 

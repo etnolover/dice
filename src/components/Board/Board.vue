@@ -31,6 +31,7 @@
             <div class="column bet-type">
               <button
                 class="button is-primary is-fullwidth bet-type__btn"
+                @click="runGame('hi')"
                 :disabled="isBetButtonsDisabled">
                 Bet Hi
               </button>
@@ -63,6 +64,7 @@
             <div class="column bet-type">
               <button
                 class="button is-primary is-fullwidth bet-type__btn"
+                @click="runGame('lo')"
                 :disabled="isBetButtonsDisabled">
                 Bet Lo
               </button>
@@ -92,11 +94,13 @@
               </div>
             </div>
           </div>
-          <div class="board__game-result box has-text-centered">
+          <div
+            v-if="betResultText"
+            class="board__game-result box has-text-centered">
             <p class="game-result__title">Result:</p>
-            <div class="title is-2 game-result__details">
-              <span class="game-result__details-number">64</span>
-              <span class="game-result__details-text">Win!</span>
+            <div
+              class="title is-2 game-result__details"
+              v-text="betResultText">
             </div>
           </div>
           <div class="board__game-hash box has-text-centered">
