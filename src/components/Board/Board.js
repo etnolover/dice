@@ -56,6 +56,10 @@ export default {
         this.balanceAmount -= this.betAmount;
       }
     },
+
+    updateBalanceWithFreeCredits() {
+      this.balanceAmount = INITITAL_BALANCE_AMOUNT;
+    },
   },
 
   computed: {

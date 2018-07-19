@@ -123,6 +123,7 @@
             </p>
             <button
               class="board-balance__add-credits button is-warning is-fullwidth"
+              @click="updateBalanceWithFreeCredits"
               :disabled="!!balanceAmount">
               Free credits
             </button>
